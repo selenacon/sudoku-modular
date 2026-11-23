@@ -27,7 +27,10 @@
 # least one row and column.
 
 def check_sudoku(sudoku):
-    return
+    try: assert isinstance(sudoku, list)
+    except AssertionError:
+        sudoku = list(sudoku)
+    finally: assert isinstance(sudoku, list)
 
 if __name__ == '__main__':
     assert check_sudoku([[1, 2, 3],
