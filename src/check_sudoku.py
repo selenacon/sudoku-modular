@@ -25,6 +25,17 @@
 
 # You may assume the the input is square and contains at
 # least one row and column.
+def check_rows(sudoku):
+    for row in sudoku:
+        for column in row:
+            try: assert column in range(len(sudoku) + 1)
+            except AssertionError:
+                return False
+            try:
+                assert sudoku.count(column) == len(sudoku) +1
+            except AssertionError:
+                return False
+    return True
 
 def check_sudoku(sudoku):
     try: assert isinstance(sudoku, list)
@@ -33,6 +44,14 @@ def check_sudoku(sudoku):
     finally: assert isinstance(sudoku, list)
 
 if __name__ == '__main__':
+    assert check_rows([[1, 2, 3],
+                       [2, 3, 1],
+                       [3, 1, 2]]) == True
+    
+    assert check_rows([[1, 2, 2],
+                           [2, 3, 1],
+                           [3, 1, 2]]) == False
+    
     assert check_sudoku([[1, 2, 3],
                          [2, 3, 1],
                          [3, 1, 2]]) == True
